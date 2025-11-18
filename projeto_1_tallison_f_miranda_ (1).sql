@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/11/2025 às 20:59
+-- Tempo de geração: 18/11/2025 às 16:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -54,17 +54,22 @@ CREATE TABLE `personagens` (
   `jogador` varchar(150) NOT NULL,
   `especie` varchar(100) NOT NULL,
   `classe` varchar(100) NOT NULL,
-  `subclasse` varchar(100) DEFAULT NULL
+  `subclasse` varchar(100) DEFAULT NULL,
+  `forca` int(50) NOT NULL,
+  `destreza` int(50) NOT NULL,
+  `constituicao` int(50) NOT NULL,
+  `inteligencia` int(50) NOT NULL,
+  `sabedoria` int(50) NOT NULL,
+  `carisma` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `personagens`
 --
 
-INSERT INTO `personagens` (`id`, `personagem`, `jogador`, `especie`, `classe`, `subclasse`) VALUES
-(3, 'Venus', 'Emily', 'Elfo', 'Druida', 'Patrulheiro'),
-(4, 'Lucinda', 'Luana', 'Humano', 'Feiticeiro', ''),
-(5, 'Zara', 'Geovana', 'Humano', 'Guerreiro', '');
+INSERT INTO `personagens` (`id`, `personagem`, `jogador`, `especie`, `classe`, `subclasse`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`) VALUES
+(11, 'Venus', 'Emily', 'Elfo', 'Druida', 'Patrulheiro', 8, 14, 13, 12, 15, 10),
+(12, 'Zara', 'Geovanna', 'Humano', 'Guerreiro', '', 15, 14, 13, 10, 12, 8);
 
 --
 -- Índices para tabelas despejadas
@@ -96,7 +101,7 @@ ALTER TABLE `jogadores`
 -- AUTO_INCREMENT de tabela `personagens`
 --
 ALTER TABLE `personagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             jogador = '$jogador',
             especie = '$especie',
             classe = '$classe',
-            subclasse = '$subclasse'
+            subclasse = '$subclasse', 
             forca = '$forca',
             destreza = '$destreza',
             constituicao = '$constituicao',
@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<a href='?pg=personagem-admin'>Voltar</a>";
     }else{
         echo "<h2>Erro ao alterar cadastro.</h2>";
+        
         echo "<a href='?pg=personagem-admin'>Voltar</a>";
     }
 }else{

@@ -33,3 +33,5 @@
     }else{
         echo "<h2>Nenhum jogador cadastrado no momento.</h2>";
     }
+
+?>

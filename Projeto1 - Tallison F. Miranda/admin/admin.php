@@ -12,19 +12,10 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="?pg=paginas"> Gestão de Páginas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?pg=noticias"> Noticias</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link"  href="?pg=jogador-admin"> Jogadores</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"  href="?pg=personagem-admin"> Personagens</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?pg=contato"> Dados de Contato</a>
             </li>
         </ul>
     </div>

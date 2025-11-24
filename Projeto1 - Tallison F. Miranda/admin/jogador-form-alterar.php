@@ -1,5 +1,6 @@
 <?php
     require_once "config.inc.php";
+
     $id = $_GET['id'];
     $sql = "SELECT * FROM jogadores WHERE id = '$id'";
     $resultado = mysqli_query($conexao, $sql);
@@ -13,8 +14,10 @@
     <input type="hidden" name="id" value="<?=$jogador['id']?>">
     <label>Nome:</label>
     <input type="text" name="jogador" value="<?=$jogador['jogador']?>"><br>
-    <label>personagem:</label>
+    <label>Personagem:</label>
     <input type="text" name="personagem" value="<?=$jogador['personagem']?>"><br>
+    <label>Número de contato:</label>
+    <input type="number" name="numero" value="<?=$jogador['numero']?>"><br>
 
     <input type="submit" value="Alterar jogador">
 </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/11/2025 às 16:58
+-- Tempo de geração: 24/11/2025 às 20:30
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,18 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `jogadores` (
   `id` int(11) NOT NULL,
-  `jogador` varchar(150) NOT NULL,
-  `personagem` varchar(150) NOT NULL
+  `jogador` varchar(100) NOT NULL,
+  `personagem` varchar(100) NOT NULL,
+  `numero` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `jogadores`
 --
 
-INSERT INTO `jogadores` (`id`, `jogador`, `personagem`) VALUES
-(3, 'Emily', 'Venus'),
-(4, 'Luana', 'Lucinda'),
-(5, 'Geovana', 'Zara');
+INSERT INTO `jogadores` (`id`, `jogador`, `personagem`, `numero`) VALUES
+(1, 'Tallison', 'Apollo', '83988885555');
 
 -- --------------------------------------------------------
 
@@ -49,27 +48,27 @@ INSERT INTO `jogadores` (`id`, `jogador`, `personagem`) VALUES
 --
 
 CREATE TABLE `personagens` (
-  `id` int(11) NOT NULL,
-  `personagem` varchar(150) NOT NULL,
-  `jogador` varchar(150) NOT NULL,
-  `especie` varchar(100) NOT NULL,
-  `classe` varchar(100) NOT NULL,
-  `subclasse` varchar(100) DEFAULT NULL,
-  `forca` int(50) NOT NULL,
-  `destreza` int(50) NOT NULL,
-  `constituicao` int(50) NOT NULL,
-  `inteligencia` int(50) NOT NULL,
-  `sabedoria` int(50) NOT NULL,
-  `carisma` int(50) NOT NULL
+  `id` int(50) NOT NULL,
+  `personagem` varchar(100) NOT NULL,
+  `jogador` varchar(100) NOT NULL,
+  `especie` varchar(50) NOT NULL,
+  `classe` varchar(50) NOT NULL,
+  `subclasse` varchar(50) DEFAULT NULL,
+  `forca` int(20) NOT NULL,
+  `destreza` int(20) NOT NULL,
+  `constituicao` int(20) NOT NULL,
+  `inteligencia` int(20) NOT NULL,
+  `sabedoria` int(20) NOT NULL,
+  `carisma` int(20) NOT NULL,
+  `multclasse` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `personagens`
 --
 
-INSERT INTO `personagens` (`id`, `personagem`, `jogador`, `especie`, `classe`, `subclasse`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`) VALUES
-(11, 'Venus', 'Emily', 'Elfo', 'Druida', 'Patrulheiro', 8, 14, 13, 12, 15, 10),
-(12, 'Zara', 'Geovanna', 'Humano', 'Guerreiro', '', 15, 14, 13, 10, 12, 8);
+INSERT INTO `personagens` (`id`, `personagem`, `jogador`, `especie`, `classe`, `subclasse`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`, `multclasse`) VALUES
+(1, 'Apollo', 'Tallison', 'Elfo', 'Druida', 'Círculo da Terra', 8, 13, 14, 10, 15, 12, '');
 
 --
 -- Índices para tabelas despejadas
@@ -95,13 +94,13 @@ ALTER TABLE `personagens`
 -- AUTO_INCREMENT de tabela `jogadores`
 --
 ALTER TABLE `jogadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `personagens`
 --
 ALTER TABLE `personagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

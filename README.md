@@ -2,15 +2,15 @@
 
 *Integrantes + cargos:*
 
-Tallison Miranda: Pagina Admin.
+Tallison Miranda: Página Admin, Cadastros.
 
-Luiz Dias: Homepage.
+Luiz Dias: Front-end, Cabeçalho e Rodape.
 
-Athur Nunes: Página de jogadores e personagens.
+Athur Nunes: Página de Jogadores e Personagens.
 
-Vinícius Angelo: Cadastros.
+Vinícius Angelo: Página de Discussões.
 
-Eduardo Nunes: Banco de Dados.
+Eduardo Nunes: Pagina Principal (Homepage).
 
 *Descrição do Projeto:*
 

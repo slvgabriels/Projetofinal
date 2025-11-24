@@ -5,9 +5,10 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $jogador = $_POST["jogador"];
         $personagem = $_POST["personagem"];
+        $numero = $_POST["numero"];
 
-        $sql = "INSERT INTO jogadores (jogador, personagem) 
-            VALUES ('$jogador', '$personagem')";
+        $sql = "INSERT INTO jogadores (jogador, personagem, numero) 
+            VALUES ('$jogador', '$personagem', '$numero')";
 
         $executa = mysqli_query($conexao, $sql);
         if($executa) {

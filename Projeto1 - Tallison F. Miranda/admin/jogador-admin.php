@@ -14,6 +14,7 @@
             echo "ID: ".$dados['id']."<br>";
             echo "Nome: ".$dados['jogador']."<br>";
             echo "Personagem: ".$dados['personagem']."<br>";
+            echo "Número de contato: ".$dados['numero']."<br>";
             echo " <a href='?pg=jogador-form-alterar&id=$dados[id]'>Editar</a>";
             echo " <a href='?pg=jogador-excluir&id=$dados[id]'>Excluir</a>";
             echo "<hr>";

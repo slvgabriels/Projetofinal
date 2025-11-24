@@ -8,6 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $especie = $_POST["especie"];
     $classe = $_POST["classe"];
     $subclasse = $_POST["subclasse"];
+    $multclasse = $_POST["multclasse"];
     $forca = $_POST["forca"];
     $destreza = $_POST["destreza"];
     $constituicao = $_POST["constituicao"];
@@ -21,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             jogador = '$jogador',
             especie = '$especie',
             classe = '$classe',
-            subclasse = '$subclasse', 
+            subclasse = '$subclasse'
             forca = '$forca',
             destreza = '$destreza',
             constituicao = '$constituicao',
@@ -42,5 +43,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }else{
     echo "<h2>Acesso negado.</h2>";
     echo "<a href='?pg=personagem-admin'>Voltar</a>";
-
 }

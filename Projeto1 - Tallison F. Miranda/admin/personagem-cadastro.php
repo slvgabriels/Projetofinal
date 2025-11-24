@@ -8,6 +8,7 @@
         $especie = $_POST["especie"];
         $classe = $_POST["classe"];
         $subclasse = $_POST["subclasse"];
+        $multclasse = $_POST["multclasse"];
         $forca = $_POST["forca"];
         $destreza = $_POST["destreza"];
         $constituicao = $_POST["constituicao"];
@@ -15,8 +16,8 @@
         $sabedoria = $_POST["sabedoria"];
         $carisma = $_POST["carisma"];
 
-       $sql = "INSERT INTO personagens (personagem, jogador, especie, classe, subclasse, forca, destreza, constituicao, inteligencia, sabedoria, carisma)
-            VALUES ('$personagem', '$jogador', '$especie', '$classe', '$subclasse', '$forca', '$destreza', '$constituicao','$inteligencia', '$sabedoria', '$carisma')";
+        $sql = "INSERT INTO personagens (personagem, jogador, especie, classe, subclasse, multclasse, forca, destreza, constituicao, inteligencia, sabedoria, carisma)
+            VALUES ('$personagem', '$jogador', '$especie', '$classe', '$subclasse', '$multclasse', '$forca', '$destreza', '$constituicao','$inteligencia', '$sabedoria', '$carisma')";
         $executa = mysqli_query($conexao, $sql);
         if($executa) {
             echo "<h2>Cadastro realizado com sucesso.</h2>";
@@ -28,5 +29,4 @@
     }else{
         echo "<h2>Acesso negado.</h2>";
         echo "<a href='?pg=personagem-admin'>Voltar</a>";
-
     }

@@ -17,6 +17,7 @@
             echo "Espécie: ".$dados['especie']."<br>";
             echo "Classe: ".$dados['classe']."<br>";
             echo "Sub-classe: ".$dados['subclasse']."<br>";
+            echo "Multi-classe: ".$dados['multclasse']."<br>";
             echo "Atributos: ", "Força: ".$dados['forca']. " / " , "Destreza: ".$dados['destreza']. " / ", "Constituição: ".$dados['constituicao']." / ", "Inteligência: ".$dados['inteligencia']." / ", "Sabedoria: ".$dados['sabedoria']." / ", "Carisma: ".$dados['carisma']."<br>";
             echo " <a href='?pg=personagem-form-alterar&id=$dados[id]'>Editar</a>";
             echo " <a href='?pg=personagem-excluir&id=$dados[id]'>Excluir</a>";
@@ -24,5 +25,4 @@
         }
     }else{
         echo "<h3>Nenhum personagem cadastrado!</h3>";
-
     }

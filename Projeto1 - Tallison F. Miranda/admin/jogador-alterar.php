@@ -5,11 +5,13 @@ require_once "config.inc.php";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $jogador = $_POST["jogador"];
     $personagem = $_POST["personagem"];
+    $numero = $_POST["numero"];
     $id = $_POST["id"];
 
     $sql = "UPDATE jogadores SET 
             jogador = '$jogador',
-            personagem = '$personagem'
+            personagem = '$personagem',
+            numero = '$numero'
             WHERE id = '$id'";
 
     $executa = mysqli_query($conexao, $sql);

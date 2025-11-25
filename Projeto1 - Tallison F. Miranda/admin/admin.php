@@ -1,12 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    include "login.php";
+    exit;
+}
+?>
+
+<?php
     echo "<h1>Painel Administrativo</h1>";
 
-    $login = True;
-    if($login == True){
-        include "principal.php";
-    }else{
-        include "login.php";
-    }
 ?>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
     <div class="container-fluid">
@@ -36,3 +39,4 @@
     }
     }
 ?>
+

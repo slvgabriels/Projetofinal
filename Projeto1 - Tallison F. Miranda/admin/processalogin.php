@@ -11,7 +11,7 @@ if ($username === $usuario && $password === $senha) {
     $_SESSION['logado'] = true;
     header("Location: admin.php");
     exit;
-
 } else {
-    echo "Login inválido! <a href='login.php'>Tentar novamente</a>";
+    header("Location: login.php?error=invalid");
+    exit;
 }

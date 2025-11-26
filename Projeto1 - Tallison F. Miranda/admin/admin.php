@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_GET['pg']) && $_GET['pg'] == 'logout') {
     session_destroy();
-    header("Location: login.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -273,11 +273,6 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 <li class="nav-item">
                     <a class="nav-link nav-link-admin" href="?pg=personagem-admin">
                         <i class="bi bi-person-badge"></i> Personagens
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin" href="../index.php">
-                        <i class="bi bi-house"></i> Site
                     </a>
                 </li>
                 <li class="nav-item">

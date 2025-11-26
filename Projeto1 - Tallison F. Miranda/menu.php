@@ -25,6 +25,11 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link nav-link-custom" href="admin/login.php">
+            <i class="bi bi-shield-lock"></i> Login
+        </a>
+    </li>
+    <li class="nav-item">
         <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
             <i class="bi bi-sun-fill" id="themeIcon"></i>
         </button>

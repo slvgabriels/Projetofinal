@@ -1,15 +1,7 @@
 <?php
-
-    include_once "topo.php";
-    include_once "menu.php";
-
-    if(empty($_SERVER["QUERY_STRING"])){
-        $var = "conteudo";
-            include_once "$var.php";
-    }else{
-        $pg = $_GET['pg'];
-        include_once "$pg.php";
-    }
-
-    include_once "rodape.php";
+// Arquivo de redirecionamento para manter compatibilidade
+// Redireciona automaticamente para o frontend
+header("Location: /frontend/index.php");
+exit;
 ?>
+

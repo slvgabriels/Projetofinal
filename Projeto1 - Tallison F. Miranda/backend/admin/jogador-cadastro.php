@@ -1,14 +1,29 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa o cadastro de novos jogadores
+// Ele recebe os dados do formulário e insere no banco de dados
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Verifica se o formulário foi enviado usando o método POST
+// $_SERVER['REQUEST_METHOD'] contém o método HTTP usado (GET, POST, etc)
+// POST é usado para enviar dados de formulários de forma segura
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Pega os dados enviados pelo formulário e protege contra SQL Injection
+    // mysqli_real_escape_string() escapa caracteres especiais que poderiam ser usados em ataques
+    // Isso é uma proteção básica contra SQL Injection (tentativas de manipular o banco)
     $jogador = mysqli_real_escape_string($conexao, $_POST["jogador"]);
     $personagem = mysqli_real_escape_string($conexao, $_POST["personagem"]);
     $numero = mysqli_real_escape_string($conexao, $_POST["numero"]);
 
+    // Monta o comando SQL para inserir um novo registro na tabela 'jogadores'
+    // INSERT INTO adiciona um novo registro
+    // Os valores entre parênteses são os dados que serão inseridos
     $sql = "INSERT INTO jogadores (jogador, personagem, numero) 
             VALUES ('$jogador', '$personagem', '$numero')";
 
+    // Executa o comando SQL no banco de dados
+    // mysqli_query() retorna true se funcionou, false se deu erro
     $executa = mysqli_query($conexao, $sql);
     if($executa) {
         echo '<div class="glass-card p-4" style="background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3);">

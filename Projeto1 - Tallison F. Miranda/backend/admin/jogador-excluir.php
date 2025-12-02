@@ -1,10 +1,24 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa a exclusão de jogadores do sistema
+// Ele recebe o ID do jogador pela URL e remove o registro do banco de dados
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Pega o ID do jogador que será excluído
+// O ID vem pela URL (ex: ?id=5)
+// $_GET contém os parâmetros passados pela URL
+// (int) força a conversão para número inteiro (proteção contra valores inválidos)
 $id = (int)$_GET['id'];
 
+// Monta o comando SQL para deletar um registro
+// DELETE FROM remove um registro da tabela
+// WHERE id = $id especifica QUAL registro será deletado (o que tem esse ID)
+// IMPORTANTE: Esta operação é permanente e não pode ser desfeita!
 $sql = "DELETE FROM jogadores WHERE id = $id";
 
+// Executa o comando SQL no banco de dados
+// mysqli_query() retorna true se funcionou, false se deu erro
 $resultado = mysqli_query($conexao, $sql);
 if($resultado){
     echo '<div class="glass-card p-4" style="background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3);">

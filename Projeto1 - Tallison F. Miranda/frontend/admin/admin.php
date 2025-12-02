@@ -1,16 +1,44 @@
 <?php
+// Este arquivo é o painel administrativo principal do sistema
+// Ele controla o acesso às páginas administrativas e gerencia a navegação
+// Todas as páginas administrativas passam por este arquivo
+
+// Inicia uma sessão PHP para manter o estado de login do usuário
+// session_start() deve ser chamado ANTES de qualquer saída HTML
 session_start();
 
+// Verifica se o usuário clicou em "Sair" (logout)
+// $_GET['pg'] contém o parâmetro da URL (ex: ?pg=logout)
+// isset() verifica se a variável existe e tem valor
 if (isset($_GET['pg']) && $_GET['pg'] == 'logout') {
+    // Se o usuário quer fazer logout:
+    
+    // session_destroy() destrói todos os dados da sessão
+    // Isso efetivamente "desloga" o usuário
     session_destroy();
-    header("Location: ../index.php");
+    
+    // Redireciona o usuário de volta para o site principal (não para a página de login)
+    // Caminho absoluto da raiz do projeto
+    header("Location: /frontend/index.php");
+    
+    // Encerra a execução do script
     exit;
 }
 
+// Verifica se o usuário está logado
+// !isset() verifica se a variável NÃO existe
+// Se a sessão 'logado' não existir OU não for igual a true, o usuário não está autenticado
 if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    // Se o usuário não estiver logado:
+    
+    // Inclui e exibe a página de login
+    // include carrega o arquivo login.php e executa seu conteúdo
     include "login.php";
+    
+    // Encerra a execução - não mostra o painel administrativo
     exit;
 }
+// Se chegou aqui, o usuário está autenticado e pode ver o painel administrativo
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -293,17 +321,53 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
 <div class="container">
     <div class="content-wrapper">
         <?php
+        // Sistema de roteamento dinâmico - carrega diferentes páginas baseado na URL
+        // $_SERVER["QUERY_STRING"] contém os parâmetros da URL (ex: ?pg=jogador-admin)
+        
+        // Lista de páginas que estão no backend (processamento)
+        $backend_pages = ['jogador-cadastro', 'jogador-alterar', 'jogador-excluir', 
+                          'personagem-cadastro', 'personagem-alterar', 'personagem-excluir'];
+        
+        // Verifica se não há parâmetros na URL (usuário acessou admin.php sem parâmetros)
         if(empty($_SERVER["QUERY_STRING"])){
+            // Se não há parâmetros, carrega a página principal (dashboard)
             $var = "principal";
+            // include_once carrega o arquivo principal.php
+            // O $var.php se torna "principal.php"
             include_once "$var.php";
         }else{
+            // Se há parâmetros na URL (ex: ?pg=jogador-admin):
+            
+            // Pega o valor do parâmetro 'pg' da URL
+            // Exemplo: ?pg=jogador-admin -> $pg = "jogador-admin"
             $pg = $_GET['pg'];
-            if(file_exists("$pg.php")){
-                include_once "$pg.php";
+            
+            // Verifica se é uma página do backend
+            if(in_array($pg, $backend_pages)){
+                // Se for uma página do backend, carrega do backend/admin/
+                // Usa caminho absoluto baseado na raiz do projeto
+                $backend_path = dirname(__DIR__, 2) . "/backend/admin/$pg.php";
+                if(file_exists($backend_path)){
+                    include_once $backend_path;
+                } else {
+                    echo "<div class='alert alert-danger'><h3><i class='bi bi-exclamation-triangle'></i> Página não encontrada!</h3></div>";
+                }
             } else {
-                echo "<div class='alert alert-danger'><h3><i class='bi bi-exclamation-triangle'></i> Página não encontrada!</h3></div>";
+                // Se for uma página do frontend, tenta carregar da pasta atual
+                if(file_exists("$pg.php")){
+                    // Se o arquivo existe, carrega e exibe seu conteúdo
+                    // include_once garante que o arquivo só será incluído uma vez (evita duplicação)
+                    include_once "$pg.php";
+                } else {
+                    // Se o arquivo não existir, exibe mensagem de erro
+                    // Isso protege contra tentativas de acessar arquivos inexistentes
+                    echo "<div class='alert alert-danger'><h3><i class='bi bi-exclamation-triangle'></i> Página não encontrada!</h3></div>";
+                }
             }
         }
+        // Este sistema permite que uma única página (admin.php) carregue diferentes conteúdos
+        // baseado no parâmetro 'pg' da URL, criando um sistema de roteamento simples
+        // Agora também diferencia entre páginas frontend e backend
         ?>
     </div>
 </div>

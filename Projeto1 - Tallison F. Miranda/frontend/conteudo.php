@@ -89,7 +89,7 @@
         </div>
 
         <?php
-        require_once "admin/config.inc.php";
+        require_once dirname(__DIR__) . "/backend/admin/config.inc.php";
         
         $sql_jogadores = "SELECT COUNT(*) as total FROM jogadores";
         $result_jogadores = mysqli_query($conexao, $sql_jogadores);

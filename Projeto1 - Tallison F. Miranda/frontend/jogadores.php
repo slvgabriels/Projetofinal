@@ -8,7 +8,7 @@
         </div>
 
         <?php
-        require_once "admin/config.inc.php";
+        require_once dirname(__DIR__) . "/backend/admin/config.inc.php";
 
         $sql = "SELECT * FROM jogadores ORDER BY jogador ASC";
         $resultado = mysqli_query($conexao, $sql);

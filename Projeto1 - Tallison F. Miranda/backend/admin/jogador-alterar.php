@@ -1,18 +1,33 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa a atualização (edição) de dados de jogadores existentes
+// Ele recebe os dados do formulário de edição e atualiza o registro no banco de dados
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Verifica se o formulário foi enviado usando o método POST
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Pega os dados enviados pelo formulário e protege contra SQL Injection
     $jogador = mysqli_real_escape_string($conexao, $_POST["jogador"]);
     $personagem = mysqli_real_escape_string($conexao, $_POST["personagem"]);
     $numero = mysqli_real_escape_string($conexao, $_POST["numero"]);
+    
+    // Pega o ID do jogador que está sendo editado
+    // (int) força a conversão para número inteiro (proteção adicional)
+    // O ID identifica qual registro será atualizado
     $id = (int)$_POST["id"];
 
+    // Monta o comando SQL para atualizar um registro existente
+    // UPDATE modifica dados de um registro que já existe
+    // SET define quais colunas serão atualizadas e seus novos valores
+    // WHERE id = $id especifica QUAL registro será atualizado (o que tem esse ID)
     $sql = "UPDATE jogadores SET 
             jogador = '$jogador',
             personagem = '$personagem',
             numero = '$numero'
             WHERE id = $id";
 
+    // Executa o comando SQL no banco de dados
     $executa = mysqli_query($conexao, $sql);
     if($executa) {
         echo '<div class="glass-card p-4" style="background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3);">

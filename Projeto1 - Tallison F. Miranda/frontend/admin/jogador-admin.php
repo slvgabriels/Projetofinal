@@ -8,9 +8,20 @@
 </div>
 
 <?php
-require_once "config.inc.php";
+// Este arquivo exibe a lista de todos os jogadores cadastrados no sistema
+// Permite visualizar, editar e excluir jogadores através de uma tabela
 
+// Inclui o arquivo de configuração do banco de dados
+require_once dirname(__DIR__, 2) . "/backend/admin/config.inc.php";
+
+// Monta o comando SQL para buscar todos os jogadores
+// SELECT * busca todas as colunas de todos os registros
+// FROM jogadores especifica a tabela de onde buscar os dados
+// ORDER BY jogador ASC ordena os resultados pelo nome do jogador em ordem alfabética (A-Z)
 $sql = "SELECT * FROM jogadores ORDER BY jogador ASC";
+
+// Executa a consulta SQL no banco de dados
+// mysqli_query() retorna um resultado que contém todos os registros encontrados
 $resultado = mysqli_query($conexao, $sql);
 
 if(mysqli_num_rows($resultado) > 0){
@@ -28,6 +39,10 @@ if(mysqli_num_rows($resultado) > 0){
         </thead>
         <tbody>
             <?php
+            // Loop que percorre cada registro retornado pela consulta SQL
+            // mysqli_fetch_array() pega uma linha do resultado por vez
+            // Quando não há mais linhas, retorna false e o loop para
+            // $dados é um array que contém os dados de um jogador (id, jogador, personagem, numero)
             while($dados = mysqli_fetch_array($resultado)){
             ?>
             <tr style="border-bottom: 1px solid rgba(99, 102, 241, 0.2); transition: background 0.3s;">

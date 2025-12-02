@@ -1,11 +1,31 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo exibe o formulário de edição de personagens
+// Ele busca os dados do personagem no banco e preenche o formulário com esses dados
+// Quando o usuário salva, os dados são enviados para personagem-alterar.php
 
+// Inclui o arquivo de configuração do banco de dados
+require_once dirname(__DIR__, 2) . "/backend/admin/config.inc.php";
+
+// Pega o ID do personagem que será editado
+// O ID vem pela URL (ex: ?id=3)
 $id = $_GET['id'];
+
+// Monta o comando SQL para buscar os dados do personagem específico
+// SELECT * busca todas as colunas
+// WHERE id = '$id' filtra apenas o registro com o ID informado
 $sql = "SELECT * FROM personagens WHERE id = '$id'";
+
+// Executa a consulta SQL
 $resultado = mysqli_query($conexao, $sql);
 
+// Verifica se encontrou algum registro com esse ID
+// mysqli_num_rows() conta quantos registros foram encontrados
 if(mysqli_num_rows($resultado) > 0){
+    // Se encontrou o personagem:
+    
+    // Pega os dados do personagem e transforma em um array
+    // mysqli_fetch_array() retorna os dados como array associativo
+    // Agora $personagem['personagem'], $personagem['forca'], etc estão disponíveis
     $personagem = mysqli_fetch_array($resultado);
 ?>
 <div class="row">

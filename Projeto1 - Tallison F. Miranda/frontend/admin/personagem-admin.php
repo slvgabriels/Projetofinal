@@ -8,15 +8,32 @@
 </div>
 
 <?php
-require_once "config.inc.php";
+// Este arquivo exibe a lista de todos os personagens cadastrados no sistema
+// Mostra informações detalhadas como atributos, classe, espécie, etc
+// Permite visualizar, editar e excluir personagens através de cards
 
+// Inclui o arquivo de configuração do banco de dados
+require_once dirname(__DIR__, 2) . "/backend/admin/config.inc.php";
+
+// Monta o comando SQL para buscar todos os personagens
+// SELECT * busca todas as colunas de todos os registros
+// FROM personagens especifica a tabela de onde buscar os dados
+// ORDER BY personagem ASC ordena os resultados pelo nome do personagem em ordem alfabética (A-Z)
 $sql = "SELECT * FROM personagens ORDER BY personagem ASC";
+
+// Executa a consulta SQL no banco de dados
+// mysqli_query() retorna um resultado que contém todos os registros encontrados
 $resultado = mysqli_query($conexao, $sql);
 
 if(mysqli_num_rows($resultado) > 0){
 ?>
 <div class="row g-4">
     <?php
+    // Loop que percorre cada registro retornado pela consulta SQL
+    // mysqli_fetch_array() pega uma linha do resultado por vez
+    // Quando não há mais linhas, retorna false e o loop para
+    // $dados é um array que contém todos os dados de um personagem
+    // (id, personagem, jogador, especie, classe, atributos, etc)
     while($dados = mysqli_fetch_array($resultado)){
     ?>
     <div class="col-md-6 col-lg-4">

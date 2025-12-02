@@ -1,10 +1,22 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa a exclusão de personagens do sistema
+// Ele recebe o ID do personagem pela URL e remove o registro do banco de dados
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Pega o ID do personagem que será excluído
+// O ID vem pela URL (ex: ?id=3)
+// (int) força a conversão para número inteiro (proteção contra valores inválidos)
 $id = (int)$_GET['id'];
 
+// Monta o comando SQL para deletar um registro
+// DELETE FROM remove um registro da tabela 'personagens'
+// WHERE id = $id especifica QUAL registro será deletado
+// IMPORTANTE: Esta operação é permanente e não pode ser desfeita!
 $sql = "DELETE FROM personagens WHERE id = $id";
 
+// Executa o comando SQL no banco de dados
 $resultado = mysqli_query($conexao, $sql);
 if($resultado){
     echo '<div class="glass-card p-4" style="background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3);">

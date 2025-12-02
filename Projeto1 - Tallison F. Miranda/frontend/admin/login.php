@@ -1,3 +1,10 @@
+<?php
+// Este arquivo exibe a página de login do painel administrativo
+// Ele contém o formulário onde o administrador digita usuário e senha
+// Quando o formulário é enviado, os dados são enviados para processalogin.php
+// que verifica as credenciais e cria uma sessão se o login for válido
+// A página também exibe mensagens de erro via toast quando o login falha
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -239,7 +246,7 @@
                         <h1 class="mt-3 mb-1 gradient-text">Painel Administrativo</h1>
                         <p style="color: var(--text-secondary);">Acesse o painel de controle</p>
                     </div>
-                    <form action="processalogin.php" method="POST">
+                    <form action="/backend/admin/processalogin.php" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label" style="color: var(--primary-cyan); font-weight: 600;">
                                 <i class="bi bi-person me-2"></i> Usuário

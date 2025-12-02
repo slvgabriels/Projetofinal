@@ -1,11 +1,31 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo exibe o formulário de edição de jogadores
+// Ele busca os dados do jogador no banco e preenche o formulário com esses dados
+// Quando o usuário salva, os dados são enviados para jogador-alterar.php
 
+// Inclui o arquivo de configuração do banco de dados
+require_once dirname(__DIR__, 2) . "/backend/admin/config.inc.php";
+
+// Pega o ID do jogador que será editado
+// O ID vem pela URL (ex: ?id=5)
 $id = $_GET['id'];
+
+// Monta o comando SQL para buscar os dados do jogador específico
+// SELECT * busca todas as colunas
+// WHERE id = '$id' filtra apenas o registro com o ID informado
 $sql = "SELECT * FROM jogadores WHERE id = '$id'";
+
+// Executa a consulta SQL
 $resultado = mysqli_query($conexao, $sql);
 
+// Verifica se encontrou algum registro com esse ID
+// mysqli_num_rows() conta quantos registros foram encontrados
 if(mysqli_num_rows($resultado) > 0){
+    // Se encontrou o jogador:
+    
+    // Pega os dados do jogador e transforma em um array
+    // mysqli_fetch_array() retorna os dados como array associativo
+    // Agora $jogador['jogador'], $jogador['personagem'], etc estão disponíveis
     $jogador = mysqli_fetch_array($resultado);
 ?>
 <div class="row">

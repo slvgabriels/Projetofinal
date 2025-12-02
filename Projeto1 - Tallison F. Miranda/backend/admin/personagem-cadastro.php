@@ -1,23 +1,38 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa o cadastro de novos personagens
+// Ele recebe todos os dados do formulário (nome, atributos, classe, etc) e insere no banco
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Verifica se o formulário foi enviado usando o método POST
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Pega os dados de texto do formulário e protege contra SQL Injection
+    // mysqli_real_escape_string() escapa caracteres especiais perigosos
     $personagem = mysqli_real_escape_string($conexao, $_POST["personagem"]);
     $jogador = mysqli_real_escape_string($conexao, $_POST["jogador"]);
     $especie = mysqli_real_escape_string($conexao, $_POST["especie"]);
     $classe = mysqli_real_escape_string($conexao, $_POST["classe"]);
     $subclasse = mysqli_real_escape_string($conexao, $_POST["subclasse"]);
     $multclasse = mysqli_real_escape_string($conexao, $_POST["multclasse"]);
-    $forca = (int)$_POST["forca"];
-    $destreza = (int)$_POST["destreza"];
-    $constituicao = (int)$_POST["constituicao"];
-    $inteligencia = (int)$_POST["inteligencia"];
-    $sabedoria = (int)$_POST["sabedoria"];
-    $carisma = (int)$_POST["carisma"];
+    
+    // Pega os atributos numéricos do personagem
+    // (int) força a conversão para número inteiro
+    // Isso garante que valores inválidos sejam convertidos para 0
+    $forca = (int)$_POST["forca"];           // Atributo de Força
+    $destreza = (int)$_POST["destreza"];     // Atributo de Destreza
+    $constituicao = (int)$_POST["constituicao"];  // Atributo de Constituição
+    $inteligencia = (int)$_POST["inteligencia"];  // Atributo de Inteligência
+    $sabedoria = (int)$_POST["sabedoria"];   // Atributo de Sabedoria
+    $carisma = (int)$_POST["carisma"];       // Atributo de Carisma
 
+    // Monta o comando SQL para inserir um novo personagem
+    // INSERT INTO adiciona um novo registro na tabela 'personagens'
+    // Os valores numéricos não precisam de aspas (são números, não texto)
     $sql = "INSERT INTO personagens (personagem, jogador, especie, classe, subclasse, multclasse, forca, destreza, constituicao, inteligencia, sabedoria, carisma)
             VALUES ('$personagem', '$jogador', '$especie', '$classe', '$subclasse', '$multclasse', $forca, $destreza, $constituicao, $inteligencia, $sabedoria, $carisma)";
     
+    // Executa o comando SQL no banco de dados
     $executa = mysqli_query($conexao, $sql);
     if($executa) {
         echo '<div class="glass-card p-4" style="background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3);">

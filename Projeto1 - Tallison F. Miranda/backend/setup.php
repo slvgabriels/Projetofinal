@@ -143,5 +143,5 @@ mysqli_close($conexao);
 echo "<hr>";
 echo "<h2>Setup concluído com sucesso!</h2>";
 // Cria links para navegar para o site principal ou para o painel administrativo
-echo "<p><a href='index.php'>Ir para o site</a> | <a href='admin/login.php'>Ir para o painel admin</a></p>";
+echo "<p><a href='/frontend/index.php'>Ir para o site</a> | <a href='/frontend/admin/login.php'>Ir para o painel admin</a></p>";
 ?>

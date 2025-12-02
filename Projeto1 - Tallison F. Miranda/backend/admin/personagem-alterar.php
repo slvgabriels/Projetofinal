@@ -1,21 +1,35 @@
 <?php
-require_once "config.inc.php";
+// Este arquivo processa a atualização (edição) de dados de personagens existentes
+// Ele recebe todos os dados do formulário de edição e atualiza o registro no banco
 
+// Inclui o arquivo de configuração do banco de dados
+require_once __DIR__ . "/config.inc.php";
+
+// Verifica se o formulário foi enviado usando o método POST
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Pega os dados de texto do formulário e protege contra SQL Injection
     $personagem = mysqli_real_escape_string($conexao, $_POST["personagem"]);
     $jogador = mysqli_real_escape_string($conexao, $_POST["jogador"]);
     $especie = mysqli_real_escape_string($conexao, $_POST["especie"]);
     $classe = mysqli_real_escape_string($conexao, $_POST["classe"]);
     $subclasse = mysqli_real_escape_string($conexao, $_POST["subclasse"]);
     $multclasse = mysqli_real_escape_string($conexao, $_POST["multclasse"]);
+    
+    // Pega os atributos numéricos do personagem
     $forca = (int)$_POST["forca"];
     $destreza = (int)$_POST["destreza"];
     $constituicao = (int)$_POST["constituicao"];
     $inteligencia = (int)$_POST["inteligencia"];
     $sabedoria = (int)$_POST["sabedoria"];
     $carisma = (int)$_POST["carisma"];
+    
+    // Pega o ID do personagem que está sendo editado
     $id = (int)$_POST["id"];
 
+    // Monta o comando SQL para atualizar um registro existente
+    // UPDATE modifica dados de um registro que já existe
+    // SET define quais colunas serão atualizadas e seus novos valores
+    // WHERE id = $id especifica QUAL registro será atualizado
     $sql = "UPDATE personagens SET 
             personagem = '$personagem',
             jogador = '$jogador',
@@ -31,6 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             carisma = $carisma
             WHERE id = $id";
 
+    // Executa o comando SQL no banco de dados
     $executa = mysqli_query($conexao, $sql);
     if($executa) {
         echo '<div class="glass-card p-4" style="background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3);">

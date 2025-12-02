@@ -37,15 +37,38 @@
 </div>
 
 <?php
-require_once "config.inc.php";
+// Este arquivo exibe o dashboard (painel principal) do administrador
+// Mostra estatísticas gerais e links rápidos para as principais funcionalidades
 
+// Inclui o arquivo de configuração do banco de dados
+// require_once garante que o arquivo só será incluído uma vez
+// Se o arquivo não existir, o script para com erro (diferente de include)
+require_once dirname(__DIR__, 2) . "/backend/admin/config.inc.php";
+
+// Consulta SQL para contar o total de jogadores cadastrados
+// COUNT(*) conta quantos registros existem na tabela 'jogadores'
 $sql_jogadores = "SELECT COUNT(*) as total FROM jogadores";
+
+// Executa a consulta SQL no banco de dados
+// mysqli_query() envia o comando SQL e retorna um resultado
 $result_jogadores = mysqli_query($conexao, $sql_jogadores);
+
+// Pega o resultado da consulta e transforma em um array associativo
+// mysqli_fetch_assoc() retorna uma linha do resultado como array
+// ['total'] acessa o valor da coluna 'total' (que contém a contagem)
 $total_jogadores = mysqli_fetch_assoc($result_jogadores)['total'];
 
+// Consulta SQL para contar o total de personagens cadastrados
 $sql_personagens = "SELECT COUNT(*) as total FROM personagens";
+
+// Executa a consulta para contar personagens
 $result_personagens = mysqli_query($conexao, $sql_personagens);
+
+// Pega o total de personagens do resultado
 $total_personagens = mysqli_fetch_assoc($result_personagens)['total'];
+
+// Essas variáveis ($total_jogadores e $total_personagens) são usadas
+// no HTML abaixo para exibir as estatísticas no dashboard
 ?>
 
 <div class="row g-4">
